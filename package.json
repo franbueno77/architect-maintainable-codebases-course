@@ -1,0 +1,16 @@
+{
+    "name": "seeds",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "build": "pnpm --color run -r build",
+        "lint": "pnpm --color run -r lint",
+        "dev": "pnpm --color run -r dev",
+        "test": "pnpm --color run -r test",
+        "format": "pnpm --color run -r format",
+        "check": "pnpm --color run -r check"
+    },
+     "volta": {
+        "node": "22.16.0"
+     }
+}
