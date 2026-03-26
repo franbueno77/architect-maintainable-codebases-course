@@ -10,7 +10,10 @@
         "format": "pnpm --color run -r format",
         "check": "pnpm --color run -r check"
     },
-     "volta": {
+    "volta": {
         "node": "22.16.0"
-     }
+    },
+    "devDependencies": {
+        "@manypkg/cli": "^0.25.1"
+    }
 }
