@@ -2,19 +2,26 @@
     "name": "seeds",
     "version": "0.0.1",
     "devDependencies": {
+        "@eslint/js": "^9.28.0",
         "@manypkg/cli": "^0.25.1",
+        "@types/node": "^24.0.0",
+        "eslint": "^9.28.0",
+        "eslint-plugin-svelte": "^3.16.0",
+        "knip": "^6.1.0",
+        "prettier": "^3.5.3",
         "prettier-plugin-svelte": "^3.4.0",
-        "syncpack": "^14.2.1"
+        "syncpack": "^14.2.1",
+        "typescript-eslint": "^8.34.0"
     },
     "private": true,
     "scripts": {
         "build": "pnpm --color run -r build",
         "check": "pnpm --color run -r check",
         "dev": "pnpm --color run -r dev",
-        "format": "pnpm --color run -r format",
-        "lint": "pnpm --color run -r lint",
+        "lint": "eslint .",
         "sync": "syncpack lint",
-        "test": "pnpm --color run -r test"
+        "test": "pnpm --color run -r test",
+        "format": "prettier --write packages/*/{src,tests}/**/*.{ts,svelte,scss}"
     },
     "volta": {
         "node": "22.16.0"

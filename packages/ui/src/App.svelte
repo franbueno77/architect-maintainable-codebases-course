@@ -1,11 +1,16 @@
 <script lang="ts">
-import SeedPacket from './lib/SeedPacket.svelte'
-import { onMount } from 'svelte'
-import { seedPackets, isLoading, error, fetchSeedPackets } from './lib/seed-packets.state.js'
+import SeedPacket from './lib/SeedPacket.svelte';
+import { onMount } from 'svelte';
+import {
+	seedPackets,
+	isLoading,
+	error,
+	fetchSeedPackets,
+} from './lib/seed-packets.state.js';
 
-onMount(() => {
-	fetchSeedPackets()
-})
+onMount(async () => {
+	await fetchSeedPackets();
+});
 </script>
 
 <main class="container mx-auto px-4 py-8">
@@ -17,7 +22,7 @@ onMount(() => {
 		<div
 			class="grid gap-8 justify-center grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))]"
 		>
-			{#each $seedPackets as seedPacket}
+			{#each $seedPackets as seedPacket (seedPacket.id)}
 				<SeedPacket seedPacket={seedPacket} />
 			{/each}
 		</div>

@@ -1,0 +1,7 @@
+{
+	"workspaces": {
+		"packages/*": {
+			"entry": "srxc/{index,main}.ts"
+		}
+	}
+}
