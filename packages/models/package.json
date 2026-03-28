@@ -1,21 +1,13 @@
 {
-    "name":"@seeds/models",
-    "private":true,
+    "name": "@seeds/models",
     "version": "0.0.2",
-    "type": "module",
-    "types": "dist/index.d.ts",
-    "module": "dist/index.js",
-    "scripts": {
-        "check": "tsc --noEmit --skipLibCheck",
-        "test": "vitest run",
-        "test:watch": "vitest",
-        "test:ui": "vitest --ui",
-        "test:coverage": "vitest run --coverage",
-        "lint": "eslint .",
-        "build": "tsc -p tsconfig.build.json",
-        "dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput"
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "winston": "^3.17.0",
+        "yaml": "^2.8.0"
     },
-     "devDependencies": {
+    "devDependencies": {
         "@eslint/js": "^9.28.0",
         "@types/cors": "^2.8.19",
         "@types/express": "^5.0.3",
@@ -29,11 +21,19 @@
         "typescript": "~5.8.3",
         "typescript-eslint": "^8.34.0",
         "vitest": "^3.2.3"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "winston": "^3.17.0",
-    "yaml": "^2.8.0"
-  }
+    },
+    "module": "dist/index.js",
+    "private": true,
+    "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "check": "tsc --noEmit --skipLibCheck",
+        "dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
+        "lint": "eslint .",
+        "test": "vitest run",
+        "test:coverage": "vitest run --coverage",
+        "test:ui": "vitest --ui",
+        "test:watch": "vitest"
+    },
+    "type": "module",
+    "types": "dist/index.d.ts"
 }

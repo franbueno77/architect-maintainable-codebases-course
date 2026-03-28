@@ -1,19 +1,24 @@
 {
     "name": "seeds",
     "version": "0.0.1",
+    "devDependencies": {
+        "@manypkg/cli": "^0.25.1",
+        "syncpack": "^14.2.1"
+    },
     "private": true,
     "scripts": {
         "build": "pnpm --color run -r build",
-        "lint": "pnpm --color run -r lint",
+        "check": "pnpm --color run -r check",
         "dev": "pnpm --color run -r dev",
-        "test": "pnpm --color run -r test",
         "format": "pnpm --color run -r format",
-        "check": "pnpm --color run -r check"
+        "lint": "pnpm --color run -r lint",
+        "sync": "syncpack lint",
+        "test": "pnpm --color run -r test"
     },
     "volta": {
         "node": "22.16.0"
     },
-    "devDependencies": {
-        "@manypkg/cli": "^0.25.1"
+    "dependencies": {
+        "prettier-plugin-svelte": "^3.4.0"
     }
 }
