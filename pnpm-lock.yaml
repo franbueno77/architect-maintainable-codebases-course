@@ -7,14 +7,13 @@ settings:
 importers:
 
   .:
-    dependencies:
-      prettier-plugin-svelte:
-        specifier: ^3.4.0
-        version: 3.4.0(prettier@3.5.3)(svelte@5.33.19)
     devDependencies:
       '@manypkg/cli':
         specifier: ^0.25.1
         version: 0.25.1
+      prettier-plugin-svelte:
+        specifier: ^3.4.0
+        version: 3.4.0(prettier@3.5.3)(svelte@5.33.19)
       syncpack:
         specifier: ^14.2.1
         version: 14.2.1
