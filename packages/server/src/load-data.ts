@@ -7,7 +7,7 @@ const DATA_FILE_PATH = path.join(process.cwd(), 'data', 'seeds.yml');
 
 const data = fs.readFileSync(DATA_FILE_PATH, 'utf8');
 
-export function loadData(): SeedPacketCollectionModel {
+function loadData(): SeedPacketCollectionModel {
 	return yaml.parse(data) as SeedPacketCollectionModel;
 }
 
