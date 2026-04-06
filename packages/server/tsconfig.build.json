@@ -6,7 +6,8 @@
         "rootDir": "src",
         "declaration": true,
         "declarationMap": true,
-        "skipDefaultLibCheck": true
+        "skipDefaultLibCheck": true,
+        "composite": true
     },
     "include": ["src"]
 }

@@ -12,5 +12,13 @@
             "vite.config.ts",
             "svelte.config.js",
             "eslint.config.mts"
+    ],
+    "compilerOptions": {
+        "composite": true
+    },
+    "references": [
+        {
+            "path": "../models/tsconfig.build.json"
+        }
     ]
 }

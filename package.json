@@ -6,6 +6,7 @@
         "@manypkg/cli": "^0.25.1",
         "@oxc-parser/binding-win32-x64-msvc": "0.123.0",
         "@types/node": "^24.0.0",
+        "concurrently": "^9.1.2",
         "eslint": "^9.28.0",
         "eslint-plugin-svelte": "^3.16.0",
         "knip": "^6.3.0",
@@ -18,7 +19,8 @@
     "scripts": {
         "build": "pnpm --color run -r build",
         "check": "pnpm --color run -r check",
-        "dev": "pnpm --color run -r dev",
+        "dev1": "pnpm --color run -r dev",
+        "dev": "concurrently -n \"Server,Models,Client\" -c \"yellow,blue\" \"pnpm --filter=server run dev\" \"pnpm --filter=models run dev\" \"pnpm --filter=ui run dev\"",
         "lint": "eslint .",
         "sync": "syncpack lint",
         "test": "pnpm --color run -r test",
