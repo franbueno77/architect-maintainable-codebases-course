@@ -1,6 +1,9 @@
-import type { SeedPacketModel } from './seed-packet.model.js'
+import type { SeedPacketModel } from './seed-packet.model.js';
 
+/**
+ * @public
+ */
 export interface SeedPacketCollectionModel {
-	seedPackets: SeedPacketModel[],
-	version?: number
+	seedPackets: SeedPacketModel[];
+	version?: number;
 }

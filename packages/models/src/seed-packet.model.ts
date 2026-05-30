@@ -12,7 +12,10 @@
  * - Hardiness Zone: Geographic regions based on average minimum winter temperatures
  */
 
-export type DateTime = string // ISO 8601
+/**
+ * @public
+ */
+export type DateTime = string; // ISO 8601
 
 // ============================================================================
 // MEASUREMENT UNITS
@@ -30,36 +33,39 @@ enum TemperatureUnit {
 	celsius = 'celsius',
 }
 
-type RawDistanceUnit = 'inches' | 'feet' | 'yards' | 'meters' | 'centimeters'
+type RawDistanceUnit = 'inches' | 'feet' | 'yards' | 'meters' | 'centimeters';
 
+/**
+ * @beta
+ */
 export interface Distance {
-	value: number
-	unit: RawDistanceUnit
+	value: number;
+	unit: RawDistanceUnit;
 }
 
 interface DistanceRange {
-	min: Distance
-	max: Distance
+	min: Distance;
+	max: Distance;
 }
 
 interface Temperature {
-	value: number
-	unit: TemperatureUnit
+	value: number;
+	unit: TemperatureUnit;
 }
 
 interface TemperatureRange {
-	min: Temperature
-	max: Temperature
+	min: Temperature;
+	max: Temperature;
 }
 
 interface TimeDuration {
-	value: number
-	unit: TimeUnit
+	value: number;
+	unit: TimeUnit;
 }
 
 interface TimeDurationRange {
-	min: TimeDuration
-	max: TimeDuration
+	min: TimeDuration;
+	max: TimeDuration;
 }
 
 /**
@@ -81,7 +87,7 @@ type USDAHardinessZone =
 	| 11
 	| 12
 	| 13
-	| `${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13}${'a' | 'b' | ''}`
+	| `${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13}${'a' | 'b' | ''}`;
 
 // ============================================================================
 // PLANT CHARACTERISTICS
@@ -324,7 +330,7 @@ enum DrainagePreference {
 
 /**
  * Soil acidity/alkalinity affects nutrient availability to plants
- * pH scale: 0-14, where 7 is neutral, <7 is acidic, >7 is alkaline
+ * pH scale: 0-14, where 7 is neutral, greater than 7 is acidic, or minnor than 7 is alkaline
  */
 enum PhPreference {
 	acidic = 'acidic', // pH 5.5-6.5 (blueberries, azaleas)
@@ -455,150 +461,155 @@ enum SeedTreatment {
  * All spacing requirements for optimal plant growth and garden layout
  */
 interface PlantSpacing {
-	minimum: Distance // Closest plants can be without competing
-	optimal: Distance // Best spacing for healthy growth
-	rowSpacing?: Distance // Space between rows if planted in rows
-	thinning?: DistanceRange // Final spacing after thinning seedlings
-	canIntercrop?: boolean // Can other plants be grown between these
+	minimum: Distance; // Closest plants can be without competing
+	optimal: Distance; // Best spacing for healthy growth
+	rowSpacing?: Distance; // Space between rows if planted in rows
+	thinning?: DistanceRange; // Final spacing after thinning seedlings
+	canIntercrop?: boolean; // Can other plants be grown between these
 }
 
 interface USDAHardinessZoneRange {
-	min: USDAHardinessZone
-	max: USDAHardinessZone
+	min: USDAHardinessZone;
+	max: USDAHardinessZone;
 }
+
+/**
+ * @public
+ */
 export interface USDAHardinessZoneRangeMap {
-	oneSeason?: USDAHardinessZone | USDAHardinessZoneRange // Annual plants, or range where perennial plants will be ok for only one season
-	multiSeason?: USDAHardinessZone | USDAHardinessZoneRange // Range where perennial plants will be ok for multiple seasons
+	oneSeason?: USDAHardinessZone | USDAHardinessZoneRange; // Annual plants, or range where perennial plants will be ok for only one season
+	multiSeason?: USDAHardinessZone | USDAHardinessZoneRange; // Range where perennial plants will be ok for multiple seasons
 }
 
 /**
  * Environmental conditions the plant needs to thrive
  */
 interface EnvironmentalRequirements {
-	light: LightPreference // How much sunlight needed
-	water: WaterNeeds // Irrigation requirements
+	light: LightPreference; // How much sunlight needed
+	water: WaterNeeds; // Irrigation requirements
 
 	// Climate tolerance information
 	hardiness?: {
-		usdaZone: USDAHardinessZoneRangeMap
-		frostHardy?: boolean // Can survive light frost
-		heatTolerant?: boolean // Handles high temperatures well
-		coolSeasonHardy?: boolean // Prefers cool weather
-	}
+		usdaZone: USDAHardinessZoneRangeMap;
+		frostHardy?: boolean; // Can survive light frost
+		heatTolerant?: boolean; // Handles high temperatures well
+		coolSeasonHardy?: boolean; // Prefers cool weather
+	};
 
 	// Soil preferences
 	soil?: {
-		texture?: SoilTexture // Physical soil composition
-		drainage?: DrainagePreference // Water drainage needs
-		ph?: PhPreference // Acidity/alkalinity preference
-		organicMatter?: OrganicMatterPreference // Fertility requirements
-	}
+		texture?: SoilTexture; // Physical soil composition
+		drainage?: DrainagePreference; // Water drainage needs
+		ph?: PhPreference; // Acidity/alkalinity preference
+		organicMatter?: OrganicMatterPreference; // Fertility requirements
+	};
 
 	// Temperature requirements for different growth stages
 	temperatureRanges?: {
-		transplant?: TemperatureRange // Safe temperature for moving outdoors
-		ideal?: TemperatureRange // Optimal growing temperature
-		soilMin?: Temperature // Minimum soil temperature for planting
-	}
+		transplant?: TemperatureRange; // Safe temperature for moving outdoors
+		ideal?: TemperatureRange; // Optimal growing temperature
+		soilMin?: Temperature; // Minimum soil temperature for planting
+	};
 }
 
 /**
  * Physical growth characteristics that affect garden design
  */
 interface GrowthCharacteristics {
-	lifespan: PlantLifespan // How long the plant lives
-	habit: PlantGrowthHabit // Physical growth pattern
-	rate?: PlantGrowthRate // How quickly it grows
+	lifespan: PlantLifespan; // How long the plant lives
+	habit: PlantGrowthHabit; // Physical growth pattern
+	rate?: PlantGrowthRate; // How quickly it grows
 	matureSize: {
 		// Full-grown dimensions
-		height: DistanceRange // How tall it gets
-		spread: DistanceRange // How wide it spreads
-	}
-	rootDepth: RootDepth // How deep roots go
-	supportNeeds: SupportNeeds // What structures it needs for support
+		height: DistanceRange; // How tall it gets
+		spread: DistanceRange; // How wide it spreads
+	};
+	rootDepth: RootDepth; // How deep roots go
+	supportNeeds: SupportNeeds; // What structures it needs for support
 }
 
 /**
  * Resource consumption patterns for garden planning
  */
 interface ResourceRequirements {
-	nutrients: NutrientNeeds // Fertilizer requirements
-	competitiveNature: CompetitiveNature // How aggressively it competes
+	nutrients: NutrientNeeds; // Fertilizer requirements
+	competitiveNature: CompetitiveNature; // How aggressively it competes
 }
 
 /**
  * When and how to plant
  */
 interface PlantingInfo {
-	method: PlantingMethod // Direct sow vs transplant
+	method: PlantingMethod; // Direct sow vs transplant
 	timing?: {
-		seasons?: PlantingSeason[] // Which seasons to plant
-		weeksBeforeLastFrost?: number // Timing relative to last frost
-		weeksAfterLastFrost?: number // Timing relative to last frost
-	}
-	seedDepth?: Distance | DistanceRange // How deep to plant seeds
-	germinationDuration?: TimeDuration // How long until seeds sprout
-	daysToGermination?: TimeDurationRange // Range of germination time
+		seasons?: PlantingSeason[]; // Which seasons to plant
+		weeksBeforeLastFrost?: number; // Timing relative to last frost
+		weeksAfterLastFrost?: number; // Timing relative to last frost
+	};
+	seedDepth?: Distance | DistanceRange; // How deep to plant seeds
+	germinationDuration?: TimeDuration; // How long until seeds sprout
+	daysToGermination?: TimeDurationRange; // Range of germination time
 }
 
 /**
  * Information about harvesting and food production (only for edible plants)
  */
 interface ProductionInfo {
-	producesFruit: boolean // Whether it produces edible parts
-	edibleParts?: EdiblePart[] // Which parts are edible
-	harvestDuration?: TimeDuration // Time from planting to harvest
-	harvestMethod?: HarvestMethod // How to harvest
-	harvestWindow?: TimeDuration // How long harvest period lasts
+	producesFruit: boolean; // Whether it produces edible parts
+	edibleParts?: EdiblePart[]; // Which parts are edible
+	harvestDuration?: TimeDuration; // Time from planting to harvest
+	harvestMethod?: HarvestMethod; // How to harvest
+	harvestWindow?: TimeDuration; // How long harvest period lasts
 
 	// Succession planting for continuous harvest
 	successionPlanting?: {
-		recommended?: boolean // Should you plant multiple times
-		intervalWeeks?: number // Weeks between plantings
-		maxSuccessions?: number // Maximum number of plantings
-		seasonalLimitations?: PlantingSeason[] // Which seasons work
-	}
+		recommended?: boolean; // Should you plant multiple times
+		intervalWeeks?: number; // Weeks between plantings
+		maxSuccessions?: number; // Maximum number of plantings
+		seasonalLimitations?: PlantingSeason[]; // Which seasons work
+	};
 }
 
 /**
  * What role the plant plays in the garden ecosystem
  */
 interface PlantFunctions {
-	primary: PlantFunction // Main purpose (food, pollinator, etc.)
-	secondary?: PlantFunction[] // Additional benefits
-	beneficialInsects?: boolean // Attracts helpful insects
-	pollinatorValue?: boolean // Important for pollinating other plants
+	primary: PlantFunction; // Main purpose (food, pollinator, etc.)
+	secondary?: PlantFunction[]; // Additional benefits
+	beneficialInsects?: boolean; // Attracts helpful insects
+	pollinatorValue?: boolean; // Important for pollinating other plants
 }
 
 /**
  * Companion planting relationships - which plants help or hurt each other
  */
 interface CompanionPlanting {
-	goodCompanions?: string[] // Plants that grow well together
-	badCompanions?: string[] // Plants that should be kept apart
-	allelopathicEffects?: string[] // Chemicals this plant releases that affect others
+	goodCompanions?: string[]; // Plants that grow well together
+	badCompanions?: string[]; // Plants that should be kept apart
+	allelopathicEffects?: string[]; // Chemicals this plant releases that affect others
 }
 
 /**
+ * @public
  * Information specific to seed packets (not live plants)
  */
 export interface SeedPacketInfo {
-	seedCount?: number // Number of seeds in packet
-	ntWeightInOz?: number // Net weight of seeds in ounces
-	viabilityYears?: number // How many years seeds stay viable
-	germinationRate?: number // Percentage of seeds expected to sprout
-	treatmentRequired?: SeedTreatment[] // Special treatments needed before planting
-	storageRequirements?: string // How to store unused seeds
+	seedCount?: number; // Number of seeds in packet
+	ntWeightInOz?: number; // Net weight of seeds in ounces
+	viabilityYears?: number; // How many years seeds stay viable
+	germinationRate?: number; // Percentage of seeds expected to sprout
+	treatmentRequired?: SeedTreatment[]; // Special treatments needed before planting
+	storageRequirements?: string; // How to store unused seeds
 }
 
 /**
  * Plant care and maintenance information
  */
 interface PlantCareInfo {
-	commonPests?: string[] // Insects/animals that commonly attack
-	commonDiseases?: string[] // Diseases this plant is prone to
-	organicTreatments?: string[] // Natural pest/disease control methods
-	vulnerabilityPeriods?: PlantingSeason[] // When plant is most susceptible
+	commonPests?: string[]; // Insects/animals that commonly attack
+	commonDiseases?: string[]; // Diseases this plant is prone to
+	organicTreatments?: string[]; // Natural pest/disease control methods
+	vulnerabilityPeriods?: PlantingSeason[]; // When plant is most susceptible
 }
 
 // ============================================================================
@@ -638,44 +649,48 @@ enum PlantPart {
 interface ToxicityInfo {
 	// Human safety
 	humanToxicity?: {
-		level: ToxicityLevel
-		toxicParts?: PlantPart[] // Which parts are toxic
-		symptoms?: string[] // Common symptoms if consumed
-		notes?: string // Additional safety information
-	}
+		level: ToxicityLevel;
+		toxicParts?: PlantPart[]; // Which parts are toxic
+		symptoms?: string[]; // Common symptoms if consumed
+		notes?: string; // Additional safety information
+	};
+
+	alienToxicity?: {
+		toxicparts?: PlantPart[]; // Which parts are toxic to aliens
+	};
 
 	// Animal safety
 	petToxicity?: {
-		dogs?: ToxicityLevel // Toxicity to dogs
-		cats?: ToxicityLevel // Toxicity to cats
-		toxicParts?: PlantPart[] // Which parts are toxic to pets
-		symptoms?: string[] // Symptoms in pets
-	}
+		dogs?: ToxicityLevel; // Toxicity to dogs
+		cats?: ToxicityLevel; // Toxicity to cats
+		toxicParts?: PlantPart[]; // Which parts are toxic to pets
+		symptoms?: string[]; // Symptoms in pets
+	};
 
 	// Livestock safety (for farm/rural settings)
 	livestockToxicity?: {
-		level?: ToxicityLevel
-		affectedAnimals?: string[] // Which livestock are affected
-		toxicParts?: PlantPart[]
-	}
+		level?: ToxicityLevel;
+		affectedAnimals?: string[]; // Which livestock are affected
+		toxicParts?: PlantPart[];
+	};
 
 	// Contact safety
 	skinContact?: {
-		irritant?: boolean // Causes skin irritation
-		allergen?: boolean // Common allergen
-		severity?: ToxicityLevel // How severe contact reactions are
-	}
+		irritant?: boolean; // Causes skin irritation
+		allergen?: boolean; // Common allergen
+		severity?: ToxicityLevel; // How severe contact reactions are
+	};
 }
 
 interface RGBColor {
-	red: number
-	green: number
-	blue: number
+	red: number;
+	green: number;
+	blue: number;
 }
 
 interface SeedPacketPresentation {
-	accentColor: RGBColor
-	iconPath: string
+	accentColor: RGBColor;
+	iconPath: string;
 }
 
 // ============================================================================
@@ -692,6 +707,7 @@ interface SeedPacketPresentation {
  * - Ornamental plants (flowers, decorative plants)
  * - Functional plants (nitrogen fixers, pest repellents)
  * - Trees and perennials
+ * @public
  *
  * Not all fields will be available for every plant - optional sections
  * allow for incomplete data while still being useful for garden planning.
@@ -700,45 +716,45 @@ export interface SeedPacketModel {
 	// ========================================================================
 	// CORE IDENTIFICATION
 	// ========================================================================
-	id: string // Unique identifier for this plant variety
-	commonName: string // Name most people know (e.g., "Tomato")
-	latinName?: string // Scientific name (e.g., "Solanum lycopersicum")
-	description?: string // Additional details about this variety
-	plantFamily: PlantFamily // Plant family for companion planting relationships
-	presentation: SeedPacketPresentation
+	id: string; // Unique identifier for this plant variety
+	commonName: string; // Name most people know (e.g., "Tomato")
+	latinName?: string; // Scientific name (e.g., "Solanum lycopersicum")
+	description?: string; // Additional details about this variety
+	plantFamily: PlantFamily; // Plant family for companion planting relationships
+	presentation: SeedPacketPresentation;
 	// ========================================================================
 	// PROPAGATION METHOD
 	// ========================================================================
-	propagationMethod: PlantPropagationMethod // How this plant is typically started
-	storageStructure?: PlantStorageStructure // Special storage organs if any
+	propagationMethod: PlantPropagationMethod; // How this plant is typically started
+	storageStructure?: PlantStorageStructure; // Special storage organs if any
 
 	// ========================================================================
 	// REQUIRED CHARACTERISTICS (needed for garden planning)
 	// ========================================================================
-	spacing: PlantSpacing // How much space it needs
-	environmental: EnvironmentalRequirements // Climate and soil needs
-	growth: GrowthCharacteristics // Size and growth pattern
-	resources: ResourceRequirements // Nutrient and competition info
-	planting: PlantingInfo // When and how to plant
-	functions: PlantFunctions // Role in garden ecosystem
+	spacing: PlantSpacing; // How much space it needs
+	environmental: EnvironmentalRequirements; // Climate and soil needs
+	growth: GrowthCharacteristics; // Size and growth pattern
+	resources: ResourceRequirements; // Nutrient and competition info
+	planting: PlantingInfo; // When and how to plant
+	functions: PlantFunctions; // Role in garden ecosystem
 
 	// ========================================================================
 	// OPTIONAL INFORMATION (varies by plant type and available data)
 	// ========================================================================
-	production?: ProductionInfo // Harvest info (for food plants)
-	companions?: CompanionPlanting // Companion planting relationships
-	seedPacketInfo?: SeedPacketInfo // Seed-specific information
-	care?: PlantCareInfo // Pest/disease management
+	production?: ProductionInfo; // Harvest info (for food plants)
+	companions?: CompanionPlanting; // Companion planting relationships
+	seedPacketInfo?: SeedPacketInfo; // Seed-specific information
+	care?: PlantCareInfo; // Pest/disease management
 
 	// ========================================================================
 	// COMMERCIAL INFORMATION
 	// ========================================================================
-	seedSource?: string // Company/supplier name
-	plantingInstructions?: string // Detailed growing instructions
-	sellBy?: DateTime // Expiration date for seeds
+	seedSource?: string; // Company/supplier name
+	plantingInstructions?: string; // Detailed growing instructions
+	sellBy?: DateTime; // Expiration date for seeds
 
 	// ========================================================================
 	// SAFETY AND TOXICITY
 	// ========================================================================
-	toxInfo?: ToxicityInfo // Safety information about the plant
+	toxInfo?: ToxicityInfo; // Safety information about the plant
 }

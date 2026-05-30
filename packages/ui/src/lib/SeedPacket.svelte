@@ -1,34 +1,34 @@
 <script lang="ts">
-import { Tween } from 'svelte/motion'
-import { cubicOut } from 'svelte/easing'
-import SeedPacketBack from './SeedPacketBack.svelte'
-import type { SeedPacketModel } from '../models/seed-packet.model.js'
-import { rgbToCss } from '../utils/color.js'
-import { wrapText } from '../utils/formatting.js'
+import { Tween } from 'svelte/motion';
+import { cubicOut } from 'svelte/easing';
+import SeedPacketBack from './SeedPacketBack.svelte';
+import type { SeedPacketModel } from '@seeds/models';
+import { rgbToCss } from '../utils/color.js';
+import { wrapText } from '../utils/formatting.js';
 interface Props {
-	seedPacket: SeedPacketModel
+	seedPacket: SeedPacketModel;
 }
 
-const { seedPacket }: Props = $props()
+const { seedPacket }: Props = $props();
 
-let hovered = $state(false)
-let flipped = $state(false)
-const controlY = new Tween(0, { duration: 500, easing: cubicOut })
-const controlYUp = new Tween(0, { duration: 500, easing: cubicOut })
+let hovered = $state(false);
+let flipped = $state(false);
+const controlY = new Tween(0, { duration: 500, easing: cubicOut });
+const controlYUp = new Tween(0, { duration: 500, easing: cubicOut });
 
 $effect(() => {
 	controlY.set(hovered ? 40 : 0).catch((err: unknown) => {
-		console.error('Error setting controlY', err)
-	})
-})
+		console.error('Error setting controlY', err);
+	});
+});
 $effect(() => {
 	controlYUp.set(hovered ? -40 : 0).catch((err: unknown) => {
-		console.error('Error setting controlYUp', err)
-	})
-})
+		console.error('Error setting controlYUp', err);
+	});
+});
 
 function toggleFlip() {
-	flipped = !flipped
+	flipped = !flipped;
 }
 </script>
 
@@ -181,7 +181,7 @@ svg {
 					fill="#222"
 					class="title"
 				>
-					{#each wrapText(seedPacket.commonName, 20) as line, index}
+					{#each wrapText(seedPacket.commonName, 20) as line, index (line)}
 						<tspan x="200" dy={index === 0 ? 0 : 35}>{line}</tspan>
 					{/each}
 				</text>
@@ -209,11 +209,11 @@ svg {
 				>
 				{#if seedPacket.seedPacketInfo?.ntWeightInOz}
 					<text x="30" y="470" font-size="16" fill="#444"
-						>Net Wt. {seedPacket.seedPacketInfo?.ntWeightInOz ?? 0}oz</text
+						>Net Wt. {seedPacket.seedPacketInfo.ntWeightInOz}oz</text
 					>
 				{/if}
 				<text x="370" y="470" font-size="16" text-anchor="end" fill="#444"
-					>Product of {seedPacket.seedSource ?? ''}</text
+					>Product of {seedPacket.seedSource}</text
 				>
 			</svg>
 		</div>

@@ -1,11 +1,20 @@
 {
-    "name": "@seeds/models",
+    "name": "@seeds/server",
     "version": "0.0.2",
+    "dependencies": {
+        "@seeds/models": "workspace:*",
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "winston": "^3.17.0",
+        "yaml": "^2.8.0"
+    },
     "devDependencies": {
-        "@microsoft/api-documenter": "^7.30.5",
-        "@microsoft/api-extractor": "^7.58.7",
+        "@types/cors": "^2.8.19",
+        "@types/express": "^5.0.3",
         "@types/node": "^24.0.0",
+        "@vitest/coverage-v8": "^3.2.3",
         "@vitest/ui": "^3.2.3",
+        "tsx": "^4.20.0",
         "typescript": "~5.8.3",
         "vitest": "^3.2.3"
     },
@@ -15,7 +24,7 @@
         "all": "echo 'all done'",
         "build": "tsc -p tsconfig.build.json",
         "check": "tsc --noEmit --skipLibCheck",
-        "dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
+        "dev": "tsx --watch  src/index.ts",
         "test": "vitest run",
         "test:coverage": "vitest run --coverage",
         "test:ui": "vitest --ui",

@@ -1,8 +1,4 @@
-import type {
-	USDAHardinessZoneRangeMap,
-	SeedPacketInfo,
-	Distance,
-} from '../models/seed-packet.model.js'
+import type { USDAHardinessZoneRangeMap, SeedPacketInfo, Distance } from '@seeds/models';
 
 /**
  * Formats USDA hardiness zone data into a human-readable string
@@ -10,9 +6,9 @@ import type {
  * @returns Formatted zone string like "5", "5-8", or "Not specified"
  */
 export function formatUSDAZone(zoneData: USDAHardinessZoneRangeMap): string {
-	const zoneToDisplay = zoneData.multiSeason || zoneData.oneSeason
+	const zoneToDisplay = zoneData.multiSeason || zoneData.oneSeason;
 
-	if (!zoneToDisplay) return 'Not specified'
+	if (!zoneToDisplay) return 'Not specified';
 
 	if (
 		typeof zoneToDisplay === 'object' &&
@@ -21,9 +17,9 @@ export function formatUSDAZone(zoneData: USDAHardinessZoneRangeMap): string {
 	) {
 		return zoneToDisplay.min === zoneToDisplay.max
 			? `${zoneToDisplay.min}`
-			: `${zoneToDisplay.min}-${zoneToDisplay.max}`
+			: `${zoneToDisplay.min}-${zoneToDisplay.max}`;
 	} else {
-		return `${zoneToDisplay}`
+		return `${zoneToDisplay}`;
 	}
 }
 
@@ -33,21 +29,21 @@ export function formatUSDAZone(zoneData: USDAHardinessZoneRangeMap): string {
  * @returns Formatted string like "30 • Viability: 4yr • Germination: 85%"
  */
 export function formatSeedInfo(seedInfo: SeedPacketInfo): string {
-	const parts: string[] = []
+	const parts: string[] = [];
 
 	if (seedInfo.seedCount) {
-		parts.push(`# ${seedInfo.seedCount}`)
+		parts.push(`# ${seedInfo.seedCount}`);
 	}
 
 	if (seedInfo.viabilityYears) {
-		parts.push(`Viability: ${seedInfo.viabilityYears}yr`)
+		parts.push(`Viability: ${seedInfo.viabilityYears}yr`);
 	}
 
 	if (seedInfo.germinationRate) {
-		parts.push(`Germination: ${seedInfo.germinationRate}%`)
+		parts.push(`Germination: ${seedInfo.germinationRate}%`);
 	}
 
-	return parts.join(' • ')
+	return parts.join(' • ');
 }
 
 /**
@@ -58,11 +54,11 @@ export function formatSeedInfo(seedInfo: SeedPacketInfo): string {
 export function formatDistance(distance: Distance): string {
 	// For inches, remove space for compactness
 	if (distance.unit === 'inches') {
-		return `${distance.value} in`
+		return `${distance.value} in`;
 	}
 
 	// For other units, include space for readability
-	return `${distance.value} ${distance.unit}`
+	return `${distance.value} ${distance.unit}`;
 }
 
 /**
@@ -71,25 +67,7 @@ export function formatDistance(distance: Distance): string {
  * @returns Comma-separated string of edible parts
  */
 export function formatEdibleParts(edibleParts: string[]): string {
-	return edibleParts.join(', ')
-}
-
-/**
- * Formats light preference values into more readable format
- * @param lightPreference - Light preference enum value
- * @returns Formatted light preference string
- */
-export function formatLightPreference(lightPreference: string): string {
-	return lightPreference.replace('-', '-')
-}
-
-/**
- * Formats water needs into more readable format
- * @param waterNeeds - Water needs enum value
- * @returns Formatted water needs string
- */
-export function formatWaterNeeds(waterNeeds: string): string {
-	return waterNeeds
+	return edibleParts.join(', ');
 }
 
 /**
@@ -98,7 +76,7 @@ export function formatWaterNeeds(waterNeeds: string): string {
  * @returns Capitalized string
  */
 export function capitalizeWords(str: string): string {
-	return str.replace(/\b\w/g, (char) => char.toUpperCase())
+	return str.replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 /**
@@ -108,29 +86,29 @@ export function capitalizeWords(str: string): string {
  * @returns Array of text lines
  */
 export function wrapText(text: string, maxCharsPerLine: number = 12): string[] {
-	const words = text.split(' ')
-	const lines: string[] = []
-	let currentLine = ''
+	const words = text.split(' ');
+	const lines: string[] = [];
+	let currentLine = '';
 
 	for (const word of words) {
-		const testLine = currentLine ? `${currentLine} ${word}` : word
+		const testLine = currentLine ? `${currentLine} ${word}` : word;
 
 		if (testLine.length <= maxCharsPerLine) {
-			currentLine = testLine
+			currentLine = testLine;
 		} else {
 			if (currentLine) {
-				lines.push(currentLine)
-				currentLine = word
+				lines.push(currentLine);
+				currentLine = word;
 			} else {
 				// Single word is longer than max chars, just add it
-				lines.push(word)
+				lines.push(word);
 			}
 		}
 	}
 
 	if (currentLine) {
-		lines.push(currentLine)
+		lines.push(currentLine);
 	}
 
-	return lines
+	return lines;
 }

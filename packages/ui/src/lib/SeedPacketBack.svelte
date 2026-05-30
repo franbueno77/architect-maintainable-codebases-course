@@ -1,17 +1,17 @@
 <script lang="ts">
-import type { SeedPacketModel } from '../models/seed-packet.model.js'
+import type { SeedPacketModel } from '@seeds/models';
 import {
 	formatUSDAZone,
 	formatSeedInfo,
 	formatDistance,
 	formatEdibleParts,
-} from '../utils/formatting.js'
+} from '../utils/formatting.js';
 
 interface Props {
-	seedPacket: SeedPacketModel
+	seedPacket: SeedPacketModel;
 }
 
-const { seedPacket }: Props = $props()
+const { seedPacket }: Props = $props();
 </script>
 
 <div class="p-3 rounded-lg">

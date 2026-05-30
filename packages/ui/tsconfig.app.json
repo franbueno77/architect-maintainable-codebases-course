@@ -17,6 +17,9 @@
     "isolatedModules": true,
     "moduleDetection": "force"
   },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
-  "exclude": ["**/assets/**/*"]
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte", "tests/**/*.ts"],
+  "exclude": ["**/assets/**/*"],
+  "references": [
+    { "path": "../models/tsconfig.build.json" }
+  ]
 }

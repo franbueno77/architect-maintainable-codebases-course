@@ -4,7 +4,7 @@
 	"svelteAllowShorthand": false,
 	"svelteIndentScriptAndStyle": false,
 	"svelteSortOrder": "options-scripts-styles-markup",
-	"semi": false,
+	"semi": true,
 	"singleQuote": true,
 	"trailingComma": "all",
 	"arrowParens": "always",
@@ -13,5 +13,6 @@
 	"useTabs": true,
 	"bracketSpacing": true,
 	"bracketSameLine": false,
-	"quoteProps": "as-needed"
+	"quoteProps": "as-needed",
+	"endOfLine": "lf"
 }
