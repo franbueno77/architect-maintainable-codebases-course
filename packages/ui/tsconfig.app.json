@@ -18,5 +18,8 @@
     "moduleDetection": "force"
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte", "tests/**/*.ts"],
-  "exclude": ["**/assets/**/*"]
+  "exclude": ["**/assets/**/*"],
+  "references": [
+    { "path": "../models/tsconfig.build.json" }
+  ]
 }

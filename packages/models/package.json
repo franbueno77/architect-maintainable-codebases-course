@@ -1,9 +1,9 @@
 {
     "name": "@seeds/models",
     "version": "0.0.2",
-    "dependencies": {
-    },
     "devDependencies": {
+        "@microsoft/api-documenter": "^7.30.5",
+        "@microsoft/api-extractor": "^7.58.7",
         "@types/node": "^24.0.0",
         "@vitest/ui": "^3.2.3",
         "typescript": "~5.8.3",
@@ -12,6 +12,7 @@
     "module": "dist/index.js",
     "private": true,
     "scripts": {
+        "all": "echo 'all done'",
         "build": "tsc -p tsconfig.build.json",
         "check": "tsc --noEmit --skipLibCheck",
         "dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",

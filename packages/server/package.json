@@ -21,6 +21,7 @@
     "module": "dist/index.js",
     "private": true,
     "scripts": {
+        "all": "echo 'all done'",
         "build": "tsc -p tsconfig.build.json",
         "check": "tsc --noEmit --skipLibCheck",
         "dev": "tsx --watch  src/index.ts",

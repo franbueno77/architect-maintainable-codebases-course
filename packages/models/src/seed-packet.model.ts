@@ -12,6 +12,9 @@
  * - Hardiness Zone: Geographic regions based on average minimum winter temperatures
  */
 
+/**
+ * @public
+ */
 export type DateTime = string; // ISO 8601
 
 // ============================================================================
@@ -32,6 +35,9 @@ enum TemperatureUnit {
 
 type RawDistanceUnit = 'inches' | 'feet' | 'yards' | 'meters' | 'centimeters';
 
+/**
+ * @beta
+ */
 export interface Distance {
 	value: number;
 	unit: RawDistanceUnit;
@@ -324,7 +330,7 @@ enum DrainagePreference {
 
 /**
  * Soil acidity/alkalinity affects nutrient availability to plants
- * pH scale: 0-14, where 7 is neutral, <7 is acidic, >7 is alkaline
+ * pH scale: 0-14, where 7 is neutral, greater than 7 is acidic, or minnor than 7 is alkaline
  */
 enum PhPreference {
 	acidic = 'acidic', // pH 5.5-6.5 (blueberries, azaleas)
@@ -466,6 +472,10 @@ interface USDAHardinessZoneRange {
 	min: USDAHardinessZone;
 	max: USDAHardinessZone;
 }
+
+/**
+ * @public
+ */
 export interface USDAHardinessZoneRangeMap {
 	oneSeason?: USDAHardinessZone | USDAHardinessZoneRange; // Annual plants, or range where perennial plants will be ok for only one season
 	multiSeason?: USDAHardinessZone | USDAHardinessZoneRange; // Range where perennial plants will be ok for multiple seasons
@@ -580,6 +590,7 @@ interface CompanionPlanting {
 }
 
 /**
+ * @public
  * Information specific to seed packets (not live plants)
  */
 export interface SeedPacketInfo {
@@ -644,6 +655,10 @@ interface ToxicityInfo {
 		notes?: string; // Additional safety information
 	};
 
+	alienToxicity?: {
+		toxicparts?: PlantPart[]; // Which parts are toxic to aliens
+	};
+
 	// Animal safety
 	petToxicity?: {
 		dogs?: ToxicityLevel; // Toxicity to dogs
@@ -692,6 +707,7 @@ interface SeedPacketPresentation {
  * - Ornamental plants (flowers, decorative plants)
  * - Functional plants (nitrogen fixers, pest repellents)
  * - Trees and perennials
+ * @public
  *
  * Not all fields will be available for every plant - optional sections
  * allow for incomplete data while still being useful for garden planning.

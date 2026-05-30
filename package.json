@@ -1,37 +1,47 @@
 {
-    "name": "seeds",
-    "version": "0.0.1",
-    "devDependencies": {
-        "@eslint/js": "^9.28.0",
-        "@manypkg/cli": "^0.25.1",
-        "@oxc-parser/binding-win32-x64-msvc": "0.123.0",
-        "@types/node": "^24.0.0",
-        "concurrently": "^9.1.2",
-        "eslint": "^9.28.0",
-        "eslint-plugin-svelte": "^3.16.0",
-        "knip": "^6.3.0",
-        "prettier": "^3.5.3",
-        "prettier-plugin-svelte": "^3.4.0",
-        "syncpack": "^14.2.1",
-        "typescript-eslint": "^8.34.0"
-    },
-    "private": true,
-    "scripts": {
-        "build": "pnpm --color run -r build",
-        "check": "pnpm --color run -r check",
-        "dev1": "pnpm --color run -r dev",
-        "dev": "concurrently -n \"Server,Models,Client\" -c \"yellow,blue\" \"pnpm --filter=server run dev\" \"pnpm --filter=models run dev\" \"pnpm --filter=ui run dev\"",
-        "lint": "eslint .",
-        "sync": "syncpack lint",
-        "test": "pnpm --color run -r test",
-        "format": "prettier --write packages/*/{src,tests}/**/*.{ts,svelte,scss}"
-    },
-    "volta": {
-        "node": "22.16.0"
-    },
-    "pnpm": {
-        "overrides": {
-            "oxc-parser": "0.123.0"
-        }
-    }
+	"name": "seeds",
+	"version": "0.0.1",
+	"devDependencies": {
+		"@eslint/js": "^9.28.0",
+		"@manypkg/cli": "^0.25.1",
+		"@nx/eslint": "22.7.5",
+		"@nx/vite": "22.7.5",
+		"@nx/web": "22.7.5",
+		"@oxc-parser/binding-win32-x64-msvc": "0.123.0",
+		"@types/node": "^24.0.0",
+		"@vitest/ui": "^3.0.0",
+		"concurrently": "^9.1.2",
+		"eslint": "^9.28.0",
+		"eslint-plugin-svelte": "^3.16.0",
+		"jiti": "2.4.2",
+		"knip": "^6.3.0",
+		"lerna": "^9.0.7",
+		"nx": "22.7.5",
+		"prettier": "^3.5.3",
+		"prettier-plugin-svelte": "^3.4.0",
+		"syncpack": "^14.2.1",
+		"typescript-eslint": "^8.34.0",
+		"vite": "^8.0.0",
+		"vitest": "^3.0.0"
+	},
+	"private": true,
+	"scripts": {
+		"build": "pnpm --color run -r build",
+		"check": "pnpm --color run -r check",
+		"dev1": "pnpm --color run -r dev",
+		"dev": "concurrently -n \"Server,Models,Client\" -c \"yellow,blue\" \"pnpm --filter=server run dev\" \"pnpm --filter=models run dev\" \"pnpm --filter=ui run dev\"",
+		"lint": "eslint .",
+		"sync": "syncpack lint",
+		"test": "pnpm --color run -r test",
+		"format": "prettier --write packages/*/{src,tests}/**/*.{ts,svelte,scss}"
+	},
+	"volta": {
+		"node": "22.16.0"
+	},
+	"pnpm": {
+		"overrides": {
+			"oxc-parser": "0.123.0"
+		}
+	},
+	"dependencies": {}
 }

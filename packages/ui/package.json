@@ -29,6 +29,7 @@
     },
     "private": true,
     "scripts": {
+        "all": "echo 'all done'",
         "build": "vite build",
         "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
         "dev": "concurrently -n \"Server,Client\" -c \"yellow,blue\" \"pnpm run dev-server\" \"pnpm run dev-client\"",
