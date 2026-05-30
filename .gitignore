@@ -25,3 +25,13 @@ dist-ssr
 coverage
 packages/ui/public
 **/tsconfig.build.tsbuildinfo
+
+
+
+.nx/cache
+.nx/workspace-data
+vite.config.*.timestamp*
+
+# api-extractor
+packages/models/temp/
+packages/models/docs/
